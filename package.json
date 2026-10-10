@@ -1,0 +1,14 @@
+{
+  "name": "interview-prep",
+  "version": "1.0.0",
+  "description": "Full-stack web developer interview preparation (Arabic first, then English)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
