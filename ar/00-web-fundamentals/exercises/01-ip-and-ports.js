@@ -1,85 +1,142 @@
 /**
  * ============================================================
- *  تمرين 01: IP Addresses & Ports
+ *  Exercise 01: IP Addresses & Ports
  * ============================================================
  *
- *  شغّل الاختبارات:
+ *  Run the tests:
  *    node --test ar/00-web-fundamentals/exercises/01-ip-and-ports.test.js
  *
- *  ⚠️ ما تفتح مجلد solutions قبل ما تحاول بجد!
+ *  ⚠️ Don't open the solutions folder before you really try!
  */
 
 /**
  * ------------------------------------------------------------
  *  1) isValidIPv4(ip)
  * ------------------------------------------------------------
- *  بترجع true إذا النص عنوان IPv4 صحيح، وإلا false.
+ *  Returns true if the string is a valid IPv4 address, otherwise false.
  *
- *  الشروط:
- *    - 4 أجزاء بالظبط، مفصولين بنقطة "."
- *    - كل جزء رقم من 0 لـ 255
- *    - كل جزء أرقام بس (ممنوع حروف، مسافات، إشارة سالب...)
- *    - ممنوع leading zeros: "01" أو "001" غلط، بس "0" لحاله صح
- *    - ممنوع أجزاء فاضية
+ *  Rules:
+ *    - Exactly 4 parts, separated by "."
+ *    - Each part is a number from 0 to 255
+ *    - Each part contains digits only (no letters, spaces, signs...)
+ *    - No leading zeros: "01" or "001" are invalid, but "0" alone is fine
+ *    - No empty parts
  *
- *  أمثلة:
+ *  Examples:
  *    isValidIPv4("192.168.1.1")   → true
  *    isValidIPv4("0.0.0.0")       → true
- *    isValidIPv4("256.1.1.1")     → false  (أكبر من 255)
+ *    isValidIPv4("256.1.1.1")     → false  (greater than 255)
  *    isValidIPv4("192.168.01.1")  → false  (leading zero)
- *    isValidIPv4("192.168.1")     → false  (3 أجزاء بس)
- *    isValidIPv4("1.2.3.4.")      → false  (جزء فاضي بالآخر)
+ *    isValidIPv4("192.168.1")     → false  (only 3 parts)
+ *    isValidIPv4("1.2.3.4.")      → false  (empty last part)
  *
- *  💡 تلميح: فكّر شو بيرجع "1e2" أو " 1" أو "" لما تحوّلهم بـ Number()
+ *  💡 Hint: what does Number() return for "1e2", " 1" or ""?
  */
+
 export function isValidIPv4(ip) {
-  // اكتب حلك هون
+  // Write your solution here
+  let answer = true
+  const parts = ip.split(".")
+  const exp = /^\d+$/ // used ai for this regular exp
+
+  for (let part of parts){
+    if (!exp.test(part) || parts.length !== 4) {
+      answer = false;
+      break;
+  }
+    if (part.length == 0 || (part.startsWith("0") && part.length > 1)  || (Number(part) > 255 || Number(part)<0)) {
+      answer = false;
+      break;
+    }
+    continue
+  }
+  return answer
 }
 
 /**
  * ------------------------------------------------------------
  *  2) isPrivateIPv4(ip)
  * ------------------------------------------------------------
- *  بترجع true إذا العنوان ضمن النطاقات الـ private:
+ *  Returns true if the address is inside a private range:
  *    10.0.0.0     →  10.255.255.255
  *    172.16.0.0   →  172.31.255.255
  *    192.168.0.0  →  192.168.255.255
  *
- *  - إذا العنوان مش IPv4 صحيح → false
- *  - 127.0.0.1 (loopback) → false، هو مش private!
+ *  - Not a valid IPv4 address → false
+ *  - 127.0.0.1 (loopback) → false, it is NOT private!
  *
- *  أمثلة:
+ *  Examples:
  *    isPrivateIPv4("192.168.1.10")  → true
  *    isPrivateIPv4("172.20.5.5")    → true
  *    isPrivateIPv4("172.32.0.1")    → false
  *    isPrivateIPv4("8.8.8.8")       → false
  *
- *  💡 تلميح: استخدم isValidIPv4 اللي كتبتها فوق
+ *  💡 Hint: reuse the isValidIPv4 you wrote above
  */
 export function isPrivateIPv4(ip) {
-  // اكتب حلك هون
+  const parts = ip.split(".")
+  if (!isValidIPv4(ip)){
+    return false
+  }
+
+  if (ip.startsWith("10.") || ip.startsWith("192.168.") ){
+    return true
+  }
+  if ( ip.startsWith("172") && (Number(parts[1]) > 15 && Number(parts[1]) < 32) ) {
+    return true
+  }
+  return false
 }
 
 /**
  * ------------------------------------------------------------
  *  3) getDefaultPort(protocol)
  * ------------------------------------------------------------
- *  بترجع الـ port الافتراضي (كرقم) للبروتوكول:
+ *  Returns the default port (as a number) for a protocol:
  *    http → 80     https → 443
  *    ws   → 80     wss   → 443
  *    ftp  → 21     ssh   → 22
  *
- *  - لازم تشتغل مع أو بدون ":" بالآخر   ("https" أو "https:")
- *  - لازم تشتغل بغض النظر عن الحروف الكبيرة ("HTTPS")
- *  - إذا البروتوكول مش معروف → null
+ *  - Must work with or without a trailing ":"   ("https" or "https:")
+ *  - Must be case-insensitive ("HTTPS")
+ *  - Unknown protocol → null
  *
- *  أمثلة:
+ *  Examples:
  *    getDefaultPort("https")   → 443
  *    getDefaultPort("HTTP:")   → 80
  *    getDefaultPort("gopher")  → null
  *
- *  💡 تلميح: object كـ lookup table أحسن من سلسلة if/else
+ *  💡 Hint: an object as a lookup table beats a long if/else chain
  */
+
 export function getDefaultPort(protocol) {
-  // اكتب حلك هون
+
+  let p = protocol.toLowerCase();
+
+  if (p.endsWith(":")){
+    p = p.slice(0,p.length - 1)
+  };
+
+  const protocolObj = {
+    http:80,
+    https:443,
+    ws:80,
+    wss:443,
+    ftp:21,
+    ssh:22,
+    smtp:25,
+    dns:53,
+    postgresql:5432,
+    mongodb:27017,
+    backend:8080,
+    react:3000,
+    vite:5173
+  }
+    for (let i in Object.keys(protocolObj) )
+  {
+    if (p === Object.keys(protocolObj)[i]) {
+      return Object.values(protocolObj)[i]
+    }
+  }
+  return null
 }

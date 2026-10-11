@@ -1,32 +1,33 @@
 /**
- * ✅ حل تمرين 01: IP Addresses & Ports
+ * ✅ Solution: Exercise 01: IP Addresses & Ports
  *
- * إذا وصلت لهون قبل ما تحاول، ارجع حاول أول 😄
+ * If you got here before trying, go back and try first 😄
  */
 
 // ------------------------------------------------------------
 // 1) isValidIPv4
 // ------------------------------------------------------------
-// الفكرة: قسّم على "." وتأكد من كل جزء.
+// Idea: split on "." and validate each part.
 //
-// ⚠️ الفخ الكبير: Number() متساهل كتير!
+// ⚠️ The big trap: Number() is way too lenient!
 //    Number("1e2")  → 100
 //    Number("0x1")  → 1
 //    Number(" 1")   → 1
 //    Number("")     → 0
-// لهيك بنتأكد أول إنه الجزء **أرقام بس** بـ regex: /^\d+$/
+// So we first make sure the part is digits only, with a regex: /^\d+$/
 export function isValidIPv4(ip) {
   const parts = ip.split('.');
   if (parts.length !== 4) return false;
 
   return parts.every((part) => {
-    if (!/^\d{1,3}$/.test(part)) return false;        // أرقام بس، 1-3 خانات (بيمنع الفاضي كمان)
+    if (!/^\d{1,3}$/.test(part)) return false;            // digits only, 1-3 chars (also rejects empty)
     if (part.length > 1 && part[0] === '0') return false; // leading zero
     return Number(part) <= 255;
   });
 }
 
-// حل بديل: regex واحد (بينفع تعرفه، بس الحل فوق أوضح بالمقابلة)
+// Alternative: a single regex (good to know, but the version above is
+// easier to explain in an interview)
 // const octet = '(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)';
 // const ipv4Regex = new RegExp(`^${octet}(\\.${octet}){3}$`);
 
@@ -60,16 +61,16 @@ const DEFAULT_PORTS = {
 export function getDefaultPort(protocol) {
   const key = protocol.toLowerCase().replace(/:$/, '');
 
-  // ⚠️ ليش Object.hasOwn وما منكتب DEFAULT_PORTS[key] ?? null بس؟
-  // لأن DEFAULT_PORTS["constructor"] بيرجع function من الـ prototype!
-  // البديل: Map، أو Object.create(null) بدل {}
+  // ⚠️ Why Object.hasOwn instead of just DEFAULT_PORTS[key] ?? null?
+  // Because DEFAULT_PORTS["constructor"] returns a function from the prototype!
+  // Alternatives: a Map, or Object.create(null) instead of {}
   return Object.hasOwn(DEFAULT_PORTS, key) ? DEFAULT_PORTS[key] : null;
 }
 
 /**
- * 🧠 دروس من التمرين:
- *  1. Number() و parseInt() متساهلين، تحقق من الشكل بـ regex أول
- *  2. Lookup table (object/Map) أنظف من if/else طويلة
- *  3. انتبه للـ prototype keys لما تستخدم object كـ dictionary
- *  4. فكّر بالـ edge cases: فاضي، سالب، leading zeros، مسافات
+ * 🧠 Takeaways:
+ *  1. Number() and parseInt() are lenient: validate the shape with a regex first
+ *  2. A lookup table (object/Map) is cleaner than a long if/else chain
+ *  3. Watch out for prototype keys when using a plain object as a dictionary
+ *  4. Think about edge cases: empty, negative, leading zeros, whitespace
  */

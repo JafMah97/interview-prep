@@ -15,8 +15,8 @@
 
 | # | الدرس | التمرين | الحالة |
 |---|-------|---------|--------|
-| 01 | [كيف بيشتغل الإنترنت](./01-how-the-internet-works.md) | `01-ip-and-ports` | 🟡 |
-| 02 | DNS | | ⬜ |
+| 01 | [كيف بيشتغل الإنترنت](./01-how-the-internet-works.md) | `01-ip-and-ports` | ✅ |
+| 02 | [نظام DNS](./02-dns.md) | `02-dns` | 🟡 |
 | 03 | HTTP & HTTPS | | ⬜ |
 | 04 | شو بيصير لما تكتب URL؟ (+ Browser Rendering) | | ⬜ |
 | 05 | Cookies, Storage & Caching | | ⬜ |
@@ -30,12 +30,15 @@
 
 ```
 00-web-fundamentals/
-├── README.md                  ← أنت هون
-├── 01-how-the-internet-works.md
-├── exercises/                 ← هون بتكتب حلك
+├── README.md                    ← you are here
+├── 01-how-the-internet-works.md ← lessons
+├── 02-dns.md
+├── exercises/                   ← write your solutions here
 │   ├── 01-ip-and-ports.js
-│   └── 01-ip-and-ports.test.js
-├── solutions/                 ← لا تفتحه قبل ما تحاول!
-│   └── 01-ip-and-ports.js
-└── interview-questions.md     ← بنهاية القسم
+│   ├── 01-ip-and-ports.test.js
+│   ├── 02-dns.js
+│   └── 02-dns.test.js
+├── solutions/                   ← don't open before trying!
+├── mock-interviews/             ← prompts for ChatGPT / Claude
+└── interview-questions.md       ← at the end of the section
 ```

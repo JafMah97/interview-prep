@@ -47,6 +47,8 @@ node --test --watch ar/00-web-fundamentals/exercises/01-ip-and-ports.test.js
 
 ## 🗺️ خريطة الطريق
 
+> 📋 عناوين كل الدروس بالتفصيل بملف [CURRICULUM.md](./CURRICULUM.md)
+
 | # | القسم | الحالة |
 |---|-------|--------|
 | 00 | [أساسيات الويب: Web Fundamentals](./ar/00-web-fundamentals) | 🟡 قيد الدراسة |
@@ -72,6 +74,13 @@ node --test --watch ar/00-web-fundamentals/exercises/01-ip-and-ports.test.js
 
 **دليل الحالة:** ⬜ ما بلشت · 🟡 قيد الدراسة · ✅ خلصت
 
-> 💡 **عن DSA:** القسم 07 جاي بعد JavaScript لأن كل الحلول بـ JS. بس من أول ما تخلص قسم JS، حل مسألة LeetCode وحدة يومياً بالتوازي مع باقي الأقسام. الاستمرارية أهم من الكمية.
+> 💡 **عن DSA:** القسم 07 جاي بعد JavaScript لأن كل الحلول بـ JS. بس مسائل LeetCode Easy بتبلّش من الأسبوع الأول، كل خميس مع المراجعة. الاستمرارية أهم من الكمية.
+
+---
+
+## 📄 الرخصة
+
+- **الشرح** (ملفات `.md`): رخصة [CC BY 4.0](./LICENSE-CONTENT.md). فيك تستخدمه وتعدّل عليه بشرط تذكر المصدر
+- **الكود** (ملفات `.js`): رخصة [MIT](./LICENSE)
 
 </div>
