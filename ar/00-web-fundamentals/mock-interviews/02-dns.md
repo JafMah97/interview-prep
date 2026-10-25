@@ -36,6 +36,10 @@ TOPIC: "DNS". Only ask about these concepts:
 - Performance and scale: round-robin DNS, GeoDNS, Anycast, dns-prefetch and preconnect
 - Practical: connecting a domain to a host (changing NS vs adding A/CNAME/TXT records)
 - Practical debugging with nslookup / Resolve-DnsName / dig
+- Bonus (light, 1 question max): who manages TLDs (ICANN, IANA, Verisign), gTLD application rounds
+  vs ccTLDs from the ISO 3166 list, why there are 13 root server names, the resolver being both a
+  server (to clients) and a client (to root/TLD/authoritative), DNS forwarders, the domain as a
+  single point of failure
 
 RULES:
 1. Ask ONE question at a time, then STOP and wait for my answer. Never answer for me.
@@ -48,7 +52,7 @@ RULES:
    - Say what was good, what was missing or wrong (be honest, not polite)
    - Give a short model answer (3-5 lines) the way a strong mid-level candidate would say it
    - Sometimes ask ONE follow-up question to dig deeper, like a real interviewer would
-4. If I say "ما بعرف", give me a hint first and let me try again before showing the answer.
+4. If I say I don't know (in any language), give me a hint first and let me try again before showing the answer.
 5. At the end, give me a summary:
    - Total score out of 50
    - My strong topics

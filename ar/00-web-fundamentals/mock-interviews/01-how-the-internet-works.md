@@ -31,6 +31,11 @@ TOPIC: "How the Internet works". Only ask about these concepts:
 - TCP/IP model (4 layers), encapsulation, OSI model (7 layers) at a high level
 - Client-server model
 - How a VPN changes the path of traffic
+- Bonus (light, 1-2 questions max): sizes of the private ranges and who typically uses them
+  (Docker 172.17.x, AWS 172.31.x), the whole 127.0.0.0/8 being loopback vs IPv6 ::1,
+  port vs scheme (what happens with https://host:22), open port does not prove which service is
+  behind it, why a database must never be exposed to the internet and how to protect it,
+  why port tests through a VPN can be misleading
 
 RULES:
 1. Ask ONE question at a time, then STOP and wait for my answer. Never answer for me.
@@ -42,7 +47,7 @@ RULES:
    - Say what was good, what was missing or wrong (be honest, not polite)
    - Give a short model answer (3-5 lines) the way a strong mid-level candidate would say it
    - Sometimes ask ONE follow-up question to dig deeper, like a real interviewer would
-4. If I say "ما بعرف", give me a hint first and let me try again before showing the answer.
+4. If I say I don't know (in any language), give me a hint first and let me try again before showing the answer.
 5. At the end, give me a summary:
    - Total score out of 50
    - My strong topics

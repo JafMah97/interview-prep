@@ -21,6 +21,25 @@ under `en/` with the exact same structure.
    not RSA key exchange; HTTP/2 server push is removed). Point to MDN /
    Cloudflare Learning Center for verification.
 
+## Teaching style (the user found dense lessons hard to follow)
+
+- **Real-life analogy FIRST, then the technical term.** Every numbered section
+  starts with `### 📦 مثال من الحياة` (a short everyday story), then
+  `### 🌐 بالـ <topic>` mapping the story to the real thing.
+- **One idea per section.** If a section needs 3+ new terms, split it.
+- **Define every term the moment it appears**, in one plain sentence. Never use
+  a term before it has been explained (no forward references like "we'll
+  explain Anycast later" in the core part).
+- **Core vs advanced:** the main sections cover what a mid-level candidate must
+  explain. Everything deeper (protocol internals, history, edge cases, trivia)
+  goes into a `## 🔍 للتعمق` section at the end, after the verification
+  questions. Put the user's own discoveries/questions from the lesson there too.
+- Short sentences, lists over paragraphs, concrete examples from the user's own
+  machine/results when available.
+- In chat: a small clarification question gets a short answer (a few lines),
+  not a lecture.
+- Reference example: `ar/00-web-fundamentals/02-dns.md`.
+
 ## Folder layout
 
 ```
@@ -56,6 +75,14 @@ Arabic + English + numbers mixed together get scrambled by the bidi algorithm.
   headings + bullet lists that **start with an Arabic word**, or put
   English/number-heavy data in an LTR code block with English labels.
 - Tables are OK when each cell is mostly one language.
+- **Every line / list item / numbered item must START with an Arabic word.**
+  Bold labels must be Arabic (`**بالأول:**`), never `**ICANN:** ...`.
+  If the subject is English, lead with an Arabic noun: "منظمة **ICANN** بتوافق".
+- **Never write leading-dot tokens inline** like `.gram`, `.com`, `.me`: the dot
+  jumps to the end ("gram."). Write the name without the dot ("دومين com") or
+  put it inside an LTR code block.
+- Keep English to single words inside Arabic sentences; move English-heavy
+  sequences (flows, lists of names) into an LTR code block.
 
 ## Code files (exercises, tests, solutions): ENGLISH ONLY
 
@@ -76,7 +103,7 @@ belong in the `.md` lesson.
    - Part 2: code exercise, link to the exercise file, the exact test command,
      tip to run the tests first and watch them fail
    - Mention the LeetCode problem number/link if the exercise is a real one
-6. `## ❓ أسئلة تحقق`: 5–8 questions, each answer hidden:
+6. `## ❓ أسئلة تحقق`: 5–8 questions (then `## 🔍 للتعمق` comes right after), each answer hidden:
    ```html
    <details>
    <summary><b>1. Question?</b></summary>
@@ -121,7 +148,7 @@ ChatGPT/Claude/Gemini for a spoken-style mock interview.
   - ask ONE question at a time and wait; 10 questions, easy → medium → hard,
     with "why" questions, a trade-off question and a practical scenario
   - after each answer: score 1–5, honest feedback, short model answer,
-    occasional follow-up question; give a hint first on "ما بعرف"
+    occasional follow-up question; give a hint first when I say I don't know
   - end with total /50, strong/weak topics, what to review, readiness verdict
 - Use `ar/00-web-fundamentals/mock-interviews/01-how-the-internet-works.md` as
   the reference example.
@@ -131,9 +158,14 @@ ChatGPT/Claude/Gemini for a spoken-style mock interview.
 1. **Verify the solution passes the tests** by copying the solution + test file
    (plus a `{"type":"module"}` package.json) into the scratchpad and running
    `node --test` there. Never overwrite the user's exercise file.
-2. Update the section `README.md` lesson table and the root `README.md` roadmap
+2. **Run the RTL checker** on every Arabic `.md` file you created or changed:
+   `node .claude/skills/new-lesson/rtl-lint.mjs <file.md> ...`
+   Fix every `L` (line starts with English), `D` (leading-dot token),
+   `C` (Arabic inside a code block) and `R` (digit range). `L` hits on table
+   rows are OK only if each cell is in one language.
+3. Update the section `README.md` lesson table and the root `README.md` roadmap
    status (⬜ → 🟡 → ✅).
-3. Don't commit or push unless the user asks.
+4. Don't commit or push unless the user asks.
 
 ## Section interview questions (`interview-questions.md`)
 

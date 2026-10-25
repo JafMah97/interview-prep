@@ -14,11 +14,12 @@
 
 لكل درس:
 
-1. **📖 اقرأ الشرح** بملف الدرس `.md`
-2. **🏋️ حل التمرين** بملف `exercises/*.js`
+1. **📖 اقرأ الشرح** بملف الدرس
+2. **🏋️ حل التمرين** بمجلد `exercises/`
 3. **🧪 شغّل الاختبارات** لتتأكد من حلك
 4. **✅ قارن حلك** مع الحل بمجلد `solutions/`، وما تفتحه قبل ما تحاول بجد!
 5. **❓ جاوب أسئلة التحقق** بآخر الدرس
+6. **🎤 اعمل مقابلة تجريبية** مع ChatGPT أو أي AI، بالـ prompt الموجود بمجلد `mock-interviews/`
 
 وبنهاية كل قسم: **ملف أسئلة مقابلة** (سهل، متوسط، صعب).
 
@@ -29,13 +30,13 @@
 ### 🧪 Running the tests
 
 ```bash
-# كل الاختبارات
+# Run all tests
 npm test
 
-# اختبار تمرين واحد
+# Run one exercise
 node --test ar/00-web-fundamentals/exercises/01-ip-and-ports.test.js
 
-# وضع المراقبة: بيعيد التشغيل كل ما تحفظ
+# Watch mode: re-runs on every save
 node --test --watch ar/00-web-fundamentals/exercises/01-ip-and-ports.test.js
 ```
 
@@ -80,7 +81,7 @@ node --test --watch ar/00-web-fundamentals/exercises/01-ip-and-ports.test.js
 
 ## 📄 الرخصة
 
-- **الشرح** (ملفات `.md`): رخصة [CC BY 4.0](./LICENSE-CONTENT.md). فيك تستخدمه وتعدّل عليه بشرط تذكر المصدر
-- **الكود** (ملفات `.js`): رخصة [MIT](./LICENSE)
+- **الشرح** (ملفات Markdown): رخصة [CC BY 4.0](./LICENSE-CONTENT.md). فيك تستخدمه وتعدّل عليه بشرط تذكر المصدر
+- **الكود** (ملفات JavaScript): رخصة [MIT](./LICENSE)
 
 </div>
